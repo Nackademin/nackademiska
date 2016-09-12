@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nackademiska Auktionsfrämjandet</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            display: table;
+            font-weight: 100;
+            font-family: 'Lato';
+        }
+
+        .container {
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .title {
+            font-size: 78px;
+        }
+
+        .subtitle {
+            font-size: 21px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="container-fluid" style="text-align: left;">
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="title">Nackademiska Auktionsfrämjandet</div>
+                <div class="subtitle">Välkommen till Nackademiska Auktionsfrämjandets Web API</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Login</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Logga in</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/account/login</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>post</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Body</label>
+                            <div class="col-sm-10">
+                                JSON objekt med login information som innehåller:<br>
+                                <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt som innehåller:<br>
+                                <code>id</code> - Kundens id<br><br>
+                                Om användaren inte finns/fel lösenord så returneras http error:<br>
+                                <code>401</code> - Unauthorized (vid fel användarnamn eller lösenord)<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Kategori</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta alla kategorier</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/category</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON array med samtliga kategorier som innehåller:<br>
+                                <code>id</code> - Kategori id<br>
+                                <code>name</code> - Kategori namn
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Kund</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta alla kunder</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/customer</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON array för samtliga kunder som innehåller:<br>
+                                <code>id</code> - Kundens id<br>
+                                <code>firstName</code> - Kundens förnamn<br>
+                                <code>lastName</code> - Kundens efternamn<br>
+                                <code>address</code> - Kundens adress<br>
+                                <code>postalCode</code> - Kundens postkod<br>
+                                <code>city</code> - Kundens stad<br>
+                                <code>phone</code> - Kundens telefon<br>
+                                <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta detaljerad information om en kund</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/customer/{id}</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Parametrar</label>
+                            <div class="col-sm-10">
+                                <code>{id}</code> - Kundens id.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt för den specifika kunden som innehåller:<br>
+                                <code>id</code> - Kundens id<br>
+                                <code>firstName</code> - Kundens förnamn<br>
+                                <code>lastName</code> - Kundens efternamn<br>
+                                <code>address</code> - Kundens adress<br>
+                                <code>postalCode</code> - Kundens postkod<br>
+                                <code>city</code> - Kundens stad<br>
+                                <code>phone</code> - Kundens telefon<br>
+                                <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Skapa en ny kund</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/customer</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>post</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Body</label>
+                            <div class="col-sm-10">
+                                JSON objekt för den nya kunden som innehåller:<br>
+                                <code>id</code> - Kundens id<br>
+                                <code>firstName</code> - Kundens förnamn<br>
+                                <code>lastName</code> - Kundens efternamn<br>
+                                <code>address</code> - Kundens adress<br>
+                                <code>postalCode</code> - Kundens postkod<br>
+                                <code>city</code> - Kundens stad<br>
+                                <code>phone</code> - Kundens telefon<br>
+                                <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Leverantör</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta alla leverantörer</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/supplier</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON array för samtliga leverantörer som innehåller:<br>
+                                <code>id</code> - leverantörens id<br>
+                                <code>name</code> - leverantörens namn<br>
+                                <code>address</code> - leverantörens adress<br>
+                                <code>postalCode</code> - leverantörens postkod<br>
+                                <code>city</code> - leverantörens stad<br>
+                                <code>phone</code> - leverantörens telefon<br>
+                                <code>email</code> - leverantörens e-post<br>
+                                <code>comission</code> - leverantörens provitionssats
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta detaljerad information om en leverantör</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/supplier/{id}</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Parametrar</label>
+                            <div class="col-sm-10">
+                                <code>{id}</code> - leverantörens id.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt för den specifika leverantören som innehåller:<br>
+                                <code>id</code> - leverantörens id<br>
+                                <code>name</code> - leverantörens namn<br>
+                                <code>address</code> - leverantörens adress<br>
+                                <code>postalCode</code> - leverantörens postkod<br>
+                                <code>city</code> - leverantörens stad<br>
+                                <code>phone</code> - leverantörens telefon<br>
+                                <code>email</code> - leverantörens e-post<br>
+                                <code>comission</code> - leverantörens provitionssats
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Auktion</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta alla auktioner</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON array för samtliga auktioner som innehåller:<br>
+                                <code>id</code> - Auktionens id<br>
+                                <code>name</code> - Auktionens namn<br>
+                                <code>description</code> - Auktionens beskrivning<br>
+                                <code>startTime</code> - Auktionens starttid<br>
+                                <code>endTime</code> - Auktionens sluttid<br>
+                                <code>imageUrl</code> - Auktionens bild<br>
+                                <code>categoryId</code> - Auktionens kategori id<br>
+                                <code>supplierId</code> - Auktionens leverantörs id<br>
+                                <code>BuyNowPrice</code> - Auktionens acceptpris<br>
+                                <code>Sold</code> - Om auktionen är såld eller inte<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta detaljerad information om en auktion</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction/{id}</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Parametrar</label>
+                            <div class="col-sm-10">
+                                <code>{id}</code> - Auktionens id.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt för den specifika auktionen som innehåller:<br>
+                                <code>id</code> - Auktionens id<br>
+                                <code>name</code> - Auktionens namn<br>
+                                <code>description</code> - Auktionens beskrivning<br>
+                                <code>startTime</code> - Auktionens starttid<br>
+                                <code>endTime</code> - Auktionens sluttid<br>
+                                <code>imageUrl</code> - Auktionens bild<br>
+                                <code>categoryId</code> - Auktionens kategori id<br>
+                                <code>supplierId</code> - Auktionens leverantörs id<br>
+                                <code>BuyNowPrice</code> - Auktionens acceptpris<br>
+                                <code>Sold</code> - Om auktionen är såld eller inte<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Köp auktionen nu</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction/buynow</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>post</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Body</label>
+                            <div class="col-sm-10">
+                                JSON objekt med login information som innehåller:<br>
+                                <code>auctionId</code> - auktionens id<br>
+                                <code>customerId</code> - Kundens id
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                Om något gåt fel så returneras http error:<br>
+                                <code>400</code> - Bad request<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <h2>Bud</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Lägga bud</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/bid</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>post</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Body</label>
+                            <div class="col-sm-10">
+                                JSON objekt med login information som innehåller:<br>
+                                <code>auctionId</code> - auktionens id<br>
+                                <code>customerId</code> - Kundens id
+                                <code>bidPrice</code> - budet
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                Om något gåt fel så returneras http error:<br>
+                                <code>400</code> - Bad request<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta bud för en auktion</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/bid/{id}</code></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Parametrar</label>
+                            <div class="col-sm-10">
+                                <code>{id}</code> - Auktionens id<br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt för alla bud på den specifika auktionen som innehåller:<br>
+                                <code>id</code> - Bud id<br>
+                                <code>auctionId</code> - Auktionens id<br>
+                                <code>customerId</code> - Kundens id<br>
+                                <code>DateTime</code> - DateTime för budet<br>
+                                <code>BidPrice</code> - Budet<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
