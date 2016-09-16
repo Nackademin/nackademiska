@@ -34,6 +34,7 @@ namespace Nackademiska
             services.AddSingleton<IAuctionRepository, AuctionDatabaseRepository>();
             services.AddSingleton<ICustomerRepository, CustomerDatabaseRepository>();
             services.AddSingleton<ISupplierRepository, SupplierDatabaseRepository>();
+            services.AddSingleton<IAdminRepository, AdminDatabaseRepository>();
 
             services.AddTransient<ApplicationDbContextSeeder>();
         }

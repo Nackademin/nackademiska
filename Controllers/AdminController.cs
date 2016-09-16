@@ -11,12 +11,12 @@ namespace Nackademiska.Controllers
     [Route("api/[controller]")]
     public class AdminController : Controller
     {
-        private readonly IAdminRepository _admin;
+        private readonly IAdminRepository _admins;
         private readonly IAuctionRepository _auctions;
-        public AdminController (IAdminRepository admin,
+        public AdminController (IAdminRepository admins,
                                     IAuctionRepository auctions)
         {
-            _admin = admin;
+            _admins = admins;
             _auctions = auctions;
         }
 
@@ -36,9 +36,9 @@ namespace Nackademiska.Controllers
         public ActionResult Post([FromBody]LoginInformation loginInformation)
         {
             try {
-                if(_admin.Login(loginInformation.Email, loginInformation.Password)) 
+                if(_admins.Login(loginInformation.Email, loginInformation.Password)) 
                 {
-                    return new JsonResult(new { id = _admin.GetByEmail(loginInformation.Email).Id } );
+                    return new JsonResult(new { id = _admins.GetByEmail(loginInformation.Email).Id } );
                 }
                 return Unauthorized();
             }
