@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nackademiska.Services;
 using Nackademiska.Models;
@@ -27,7 +25,6 @@ namespace Nackademiska.Controllers
         public IEnumerable<Auction> Get()
         {
             return _auctions.GetAllAuctions();
-            
         }
 
         [HttpGet("{id}")]

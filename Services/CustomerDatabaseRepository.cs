@@ -18,7 +18,6 @@ namespace Nackademiska.Services
             _dbContext.Customers.Add(customer);
             _dbContext.SaveChanges();
         }
-
         public Customer Get(int id)
         {
             return _dbContext.Customers.FirstOrDefault(c => c.Id == id);
@@ -33,7 +32,6 @@ namespace Nackademiska.Services
         {
             return _dbContext.Customers.FirstOrDefault(c => c.Email == email);
         }
-
         public bool Login(string email, string password)
         {
             return (_dbContext.Customers.FirstOrDefault(c => c.Email == email && c.Password == password) != null);

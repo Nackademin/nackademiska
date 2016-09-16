@@ -10,19 +10,24 @@ namespace AddressBook.Data
         private readonly IAuctionRepository _auctions;
         private readonly ICustomerRepository _customers;
         private readonly ISupplierRepository _suppliers;
+        private readonly IAdminRepository _admins;
         public ApplicationDbContextSeeder (IAuctionRepository auctions, 
                                             ICustomerRepository customers, 
-                                            ISupplierRepository suppliers)
+                                            ISupplierRepository suppliers,
+                                            IAdminRepository admins)
         {
             _auctions = auctions;
             _customers = customers;
             _suppliers = suppliers;
+            _admins = admins;
         }
 
         public void SeedData() 
         {
             if(_customers.GetAll().Count == 0)
             {
+                _admins.Create(new Admin() { Email = "admin@admin.se",
+                                                    Password = "admin12345" });                
                 _customers.Create(new Customer() { FirstName = "Sven", 
                                                     LastName = "Svensson", 
                                                     Address = "Storgatan 1", 
