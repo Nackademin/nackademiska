@@ -53,7 +53,7 @@ namespace Nackademiska.Services
         }
         public ICollection<Auction> GetAllCompletedAuctions()
         {
-            return _dbContext.Auctions.Where(a => a.Sold == true).ToList();
+            return _dbContext.Auctions.Where(a => a.Sold == true || (a.EndTime < DateTime.Now && a.Bids.Any(c => a.Id == c.AuctionId))).ToList();
         }
         public Auction GetAuction(int id)
         {

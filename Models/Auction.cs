@@ -1,5 +1,6 @@
-
 using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Nackademiska.Models
 {
@@ -15,6 +16,8 @@ namespace Nackademiska.Models
         public int SupplierId { get; set; }
         public decimal BuyNowPrice { get; set; }
         public bool Sold { get;set; }
+        [JsonIgnore]
+        public ICollection<Bid> Bids { get; set; }
     }
 }
 

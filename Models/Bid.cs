@@ -1,4 +1,3 @@
-
 using System;
 
 namespace Nackademiska.Models
@@ -10,15 +9,12 @@ namespace Nackademiska.Models
         public int CustomerId { get; set; }
         public DateTime DateTime { get; set; }
         public decimal BidPrice { get; set; }
-
     }
-
     public class BidInformation
     {
         public int AuctionId { get; set; }
         public int CustomerId { get; set; }
         public decimal BidPrice { get; set; }
-
     }
 }
 

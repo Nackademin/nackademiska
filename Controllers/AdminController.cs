@@ -20,11 +20,11 @@ namespace Nackademiska.Controllers
             _auctions = auctions;
         }
 
-        [HttpGet]
-        public IEnumerable<Auction> Get()
-        {
-            return _auctions.GetAllCompletedAuctions();
-        }
+        // [HttpGet]
+        // public IEnumerable<Auction> Get()
+        // {
+        //     return _auctions.GetAllCompletedAuctions();
+        // }
 
         // [HttpGet("{id}")]
         // public Customer Get(int id)

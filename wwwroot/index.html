@@ -22,7 +22,7 @@
             padding: 0;
             width: 100%;
             display: table;
-            font-weight: 100;
+            font-weight: 400;
             font-family: 'Lato';
         }
 
@@ -59,19 +59,21 @@
             <div class="col-sm-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h2 class="panel-title">Logga in</h2>
+                        <h2 class="panel-title">Logga in användare</h2>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/account/login</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>post</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -80,6 +82,7 @@
                                 JSON objekt med login information som innehåller:<br>
                                 <code>email</code> - Kundens e-post<br>
                                 <code>password</code> - Kundens lösenord
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -87,6 +90,50 @@
                             <div class="col-sm-10">
                                 JSON objekt som innehåller:<br>
                                 <code>id</code> - Kundens id<br><br>
+                                Om användaren inte finns/fel lösenord så returneras http error:<br>
+                                <code>401</code> - Unauthorized (vid fel användarnamn eller lösenord)<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title bg-warning">Logga in administratör (NYHET!) </h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/account/admin/login</code></label>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>post</code>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Body</label>
+                            <div class="col-sm-10">
+                                JSON objekt med login information som innehåller:<br>
+                                <code>email</code> - Administratörens e-post<br>
+                                <code>password</code> - Administratörens lösenord<br>
+                                <span class="bg-success">(email: admin@admin.se, lösenord: admin12345)</span>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt som innehåller:<br>
+                                <code>id</code> - Administratörens id<br><br>
                                 Om användaren inte finns/fel lösenord så returneras http error:<br>
                                 <code>401</code> - Unauthorized (vid fel användarnamn eller lösenord)<br>
                             </div>
@@ -112,12 +159,14 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/category</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -148,12 +197,14 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/customer</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -183,18 +234,21 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/customer/{id}</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Parametrar</label>
                             <div class="col-sm-10">
                                 <code>{id}</code> - Kundens id.
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -224,12 +278,14 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/customer</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>post</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -267,12 +323,14 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/supplier</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -301,18 +359,21 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/supplier/{id}</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Parametrar</label>
                             <div class="col-sm-10">
                                 <code>{id}</code> - leverantörens id.
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -327,6 +388,7 @@
                                 <code>phone</code> - leverantörens telefon<br>
                                 <code>email</code> - leverantörens e-post<br>
                                 <code>comission</code> - leverantörens provitionssats
+                                <br><br>
                             </div>
                         </div>
                     </div>
@@ -350,14 +412,23 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Information</label>
+                            <div class="col-sm-10">
+                                Om en auktion är köpt med "köp nu", så sätts <code>Sold</code> till <code>true</code>.<br>
+                                Obs tänk på att en auktion kan vara avslutad utan något bud, då skall den ej visas i säljstatistiken.<br><br>
+                            </div>
+                        </div>                        
                         <div class="row">
                             <label class="col-sm-2 control-label">Resultat</label>
                             <div class="col-sm-10">
@@ -371,7 +442,7 @@
                                 <code>categoryId</code> - Auktionens kategori id<br>
                                 <code>supplierId</code> - Auktionens leverantörs id<br>
                                 <code>BuyNowPrice</code> - Auktionens acceptpris<br>
-                                <code>Sold</code> - Om auktionen är såld eller inte<br>
+                                <code>Sold</code> - Om auktionen är såld eller inte
                             </div>
                         </div>
                     </div>
@@ -386,18 +457,21 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction/{id}</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Parametrar</label>
                             <div class="col-sm-10">
                                 <code>{id}</code> - Auktionens id.
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -428,12 +502,14 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction/buynow</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>post</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -442,6 +518,7 @@
                                 JSON objekt med login information som innehåller:<br>
                                 <code>auctionId</code> - auktionens id<br>
                                 <code>customerId</code> - Kundens id
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -471,12 +548,14 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/bid</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>post</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -486,6 +565,7 @@
                                 <code>auctionId</code> - auktionens id<br>
                                 <code>customerId</code> - Kundens id
                                 <code>bidPrice</code> - budet
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
@@ -506,18 +586,21 @@
                             <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/bid/{id}</code></label>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>get</code>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Parametrar</label>
                             <div class="col-sm-10">
                                 <code>{id}</code> - Auktionens id<br>
+                                <br><br>
                             </div>
                         </div>
                         <div class="row">

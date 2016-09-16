@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Nackademiska.Models
 {
     public class Customer
@@ -11,5 +13,6 @@ namespace Nackademiska.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public ICollection<Bid> Bids { get; set; }
     }
 }

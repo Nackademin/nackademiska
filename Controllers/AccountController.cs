@@ -12,9 +12,12 @@ namespace Nackademiska.Controllers
     public class AccountController : Controller
     {
         private readonly ICustomerRepository _customers;
-        public AccountController (ICustomerRepository customers)
+        private readonly IAdminRepository _admins;
+        public AccountController (ICustomerRepository customers,
+                                    IAdminRepository admins)
         {
             _customers = customers;
+            _admins = admins;
         }
 
         // [HttpGet]
@@ -36,6 +39,22 @@ namespace Nackademiska.Controllers
                 if(_customers.Login(loginInformation.Email, loginInformation.Password)) 
                 {
                     return new JsonResult(new { id = _customers.GetByEmail(loginInformation.Email).Id } );
+                }
+                return Unauthorized();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }   
+        }
+
+        [HttpPost("admin/login")]
+        public ActionResult PostAdmin([FromBody]LoginInformation loginInformation)
+        {
+            try {
+                if(_admins.Login(loginInformation.Email, loginInformation.Password)) 
+                {
+                    return new JsonResult(new { id = _admins.GetByEmail(loginInformation.Email).Id } );
                 }
                 return Unauthorized();
             }
