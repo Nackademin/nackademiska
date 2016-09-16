@@ -34,6 +34,7 @@ namespace Nackademiska.Controllers
         {
             try
             {
+                customer.Id = 0;
                 _customers.Create(customer);
                 return Ok();
             }
