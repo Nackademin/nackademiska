@@ -45,7 +45,7 @@ namespace Nackademiska.Services
         }
         public ICollection<Bid> GetAllBids(int id)
         {
-            return _dbContext.Bids.ToList();
+            return _dbContext.Bids.Where(b => b.AuctionId == id).ToList();
         }
         public ICollection<Category> GetAllCategories()
         {
