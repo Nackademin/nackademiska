@@ -1,8 +1,6 @@
 using AddressBook.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +27,7 @@ namespace Nackademiska
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -38,10 +36,7 @@ namespace Nackademiska
                     .AllowAnyHeader()
                     .AllowCredentials() );
             });
-            // services.Configure<MvcOptions>(options =>
-            // {
-            //     options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
-            // });
+
             services.AddMvc();
 
             services.AddSingleton<IAuctionRepository, AuctionDatabaseRepository>();
