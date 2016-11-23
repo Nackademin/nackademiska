@@ -58,10 +58,10 @@ namespace Nackademiska
             loggerFactory.AddDebug();
 
             //app.UseCors(builder =>  builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            app.UseCors("CorsPolicy");
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseCors("CorsPolicy");
             app.UseMvc();
 
             seeder.SeedData();

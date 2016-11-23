@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nackademiska.Services;
 using Nackademiska.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Nackademiska.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     public class CategoryController : Controller
     {
