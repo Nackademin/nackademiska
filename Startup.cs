@@ -1,6 +1,8 @@
 using AddressBook.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,8 +30,19 @@ namespace Nackademiska
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials() );
+            });
+            // services.Configure<MvcOptions>(options =>
+            // {
+            //     options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
+            // });
             services.AddMvc();
-            services.AddCors();
 
             services.AddSingleton<IAuctionRepository, AuctionDatabaseRepository>();
             services.AddSingleton<ICustomerRepository, CustomerDatabaseRepository>();
@@ -44,8 +57,8 @@ namespace Nackademiska
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseCors(builder =>  builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
+            //app.UseCors(builder =>  builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors("CorsPolicy");
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
