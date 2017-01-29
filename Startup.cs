@@ -25,6 +25,7 @@ namespace Nackademiska
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -51,7 +52,8 @@ namespace Nackademiska
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            
+            app.UseApplicationInsightsRequestTelemetry();
             //app.UseCors(builder =>  builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseDefaultFiles();
             app.UseStaticFiles();
