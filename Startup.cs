@@ -29,14 +29,15 @@ namespace Nackademiska
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials() );
-            });
+            services.AddCors();
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy("CorsPolicy",
+            //         builder => builder.AllowAnyOrigin()
+            //         .AllowAnyMethod()
+            //         .AllowAnyHeader()
+            //         .AllowCredentials() );
+            // });
 
             services.AddMvc();
 
@@ -58,7 +59,13 @@ namespace Nackademiska
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseCors("CorsPolicy");
+            // app.UseCors("CorsPolicy");
+            app.UseCors(cfg => 
+            {
+                cfg.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+            });
             app.UseMvc();
 
             seeder.SeedData();
