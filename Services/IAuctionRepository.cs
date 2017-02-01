@@ -7,7 +7,7 @@ namespace Nackademiska.Services
     {
         void CreateAuction(Auction auction);
         void CreateCategory(Category category);
-        void CreateBid(BidInformation bidInformation);
+        bool CreateBid(BidInformation bidInformation);
         void BuyNow(int auctionId, int customerId);
         ICollection<Auction> GetAllAuctions();
         ICollection<Auction> GetAllCompletedAuctions();

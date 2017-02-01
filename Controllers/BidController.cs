@@ -43,7 +43,8 @@ namespace Nackademiska.Controllers
             try
             {
                 if ( bidInformation.AuctionId>0 && bidInformation.CustomerId>0 && bidInformation.BidPrice > 0) {
-                    _auctions.CreateBid(bidInformation);
+                    if( !_auctions.CreateBid(bidInformation) )
+                        return BadRequest();
                     return Ok();
                 }
                 else {

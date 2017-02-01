@@ -25,14 +25,17 @@ namespace Nackademiska.Services
             _dbContext.Auctions.Add(auction);
             _dbContext.SaveChanges();
         }
-        public void CreateBid(BidInformation bidInformation)
+        public bool CreateBid(BidInformation bidInformation)
         {
+            if (_dbContext.Bids.Max(x => x.BidPrice) >= bidInformation.BidPrice)
+                return false;
             var bid = new Bid() { AuctionId = bidInformation.AuctionId,
                                     CustomerId = bidInformation.CustomerId,
                                     DateTime = DateTime.Now,
                                     BidPrice = bidInformation.BidPrice };
             _dbContext.Bids.Add(bid);
             _dbContext.SaveChanges();
+            return true;
         }
         public void CreateCategory(Category category)
         {
