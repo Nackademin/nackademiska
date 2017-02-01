@@ -27,7 +27,7 @@ namespace Nackademiska.Services
         }
         public bool CreateBid(BidInformation bidInformation)
         {
-            if (_dbContext.Bids.Max(x => x.BidPrice) >= bidInformation.BidPrice)
+            if (_dbContext.Bids.Where(b => b.AuctionId == bidInformation.AuctionId).Max(x => x.BidPrice) >= bidInformation.BidPrice)
                 return false;
             var bid = new Bid() { AuctionId = bidInformation.AuctionId,
                                     CustomerId = bidInformation.CustomerId,
