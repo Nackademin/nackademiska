@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Nackademiska.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace AddressBook.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {}

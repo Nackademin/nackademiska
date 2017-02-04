@@ -9,6 +9,6 @@ namespace Nackademiska.Services
         ICollection<Customer> GetAll();
         Customer Get(int id);
         Customer GetByEmail(string email);
-        bool Login(string email, string password);
+        // bool Login(string email, string password);
     }
 }

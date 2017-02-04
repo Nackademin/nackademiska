@@ -32,9 +32,9 @@ namespace Nackademiska.Services
         {
             return _dbContext.Customers.FirstOrDefault(c => c.Email == email);
         }
-        public bool Login(string email, string password)
-        {
-            return (_dbContext.Customers.FirstOrDefault(c => c.Email == email && c.Password == password) != null);
-        }
+        // public bool Login(string email, string password)
+        // {
+        //     return (_dbContext.Customers.FirstOrDefault(c => c.Email == email && c.Password == password) != null);
+        // }
     }
 }

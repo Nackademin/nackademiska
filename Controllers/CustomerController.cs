@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Nackademiska.Services;
 using Nackademiska.Models;
-using Microsoft.AspNetCore.Cors;
 
 namespace Nackademiska.Controllers
 {

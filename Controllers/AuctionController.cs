@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Nackademiska.Services;
 using Nackademiska.Models;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Nackademiska.Controllers
 {
     // [EnableCors("CorsPolicy")]
+    [Authorize]
     [Route("api/[controller]")]
     public class AuctionController : Controller
     {

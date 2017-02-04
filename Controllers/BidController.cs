@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nackademiska.Services;
 using Nackademiska.Models;
-using Microsoft.AspNetCore.Cors;
 
 namespace Nackademiska.Controllers
 {
@@ -31,12 +27,6 @@ namespace Nackademiska.Controllers
             return _auctions.GetAllBids(id);
         }
 
-        // [HttpGet("{id}")]
-        // public Auction Get(int id, int auctionid)
-        // {
-        //     return _auctions.GetAuction(id);
-        // }
-
         [HttpPost]
         public IActionResult Post([FromBody]BidInformation bidInformation)
         {
@@ -56,15 +46,5 @@ namespace Nackademiska.Controllers
                 return BadRequest();
             }
         }
-
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody]string value)
-        // {
-        // }
-
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
     }
 }
