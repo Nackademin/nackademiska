@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Nackademiska.Controllers
 {
-    // [EnableCors("CorsPolicy")]
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class AuctionController : Controller
     {
