@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Options;
 
 namespace Nackademiska.Controllers
 {
     [Route("api/[controller]")]
-
     public class AccountController : Controller
     {
         private readonly ICustomerRepository _customers;
@@ -22,12 +22,14 @@ namespace Nackademiska.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
+        private readonly JwtOptions _jwtOptions;
         public AccountController (ICustomerRepository customers,
                                     IAdminRepository admins,
                                     UserManager<ApplicationUser> userManager, 
                                     RoleManager<IdentityRole> roleManager,
                                     SignInManager<ApplicationUser> signInManager,
-                                    IPasswordHasher<ApplicationUser> passwordHasher)
+                                    IPasswordHasher<ApplicationUser> passwordHasher,
+                                    IOptions<JwtOptions> jwtOptions)
         {
             _customers = customers;
             _admins = admins;
@@ -35,6 +37,7 @@ namespace Nackademiska.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
+            _jwtOptions = jwtOptions.Value;
         }
 
         [HttpPost("login")]
@@ -48,10 +51,7 @@ namespace Nackademiska.Controllers
                         id = user.CustomerId
                     });
                 }
-                // if(_customers.Login(loginInformation.email, loginInformation.password)) 
-                // {
-                //     return new JsonResult(new { id = _customers.GetByEmail(loginInformation.email).Id } );
-                // }
+
                 return Unauthorized();
             }
             catch (Exception)
@@ -59,26 +59,6 @@ namespace Nackademiska.Controllers
                 return BadRequest();
             }   
         }
-
-        // [HttpPost("admin/login")]
-        // public async Task<IActionResult> LoginAdmin([FromBody]LoginInformation loginInformation)
-        // {
-        //     try {
-        //         var result = await _signInManager.PasswordSignInAsync(loginInformation.email, loginInformation.password, false, false);
-        //         if (result.Succeeded) {
-        //             return Ok();
-        //         }
-        //         // if(_admins.Login(loginInformation.Email, loginInformation.Password)) 
-        //         // {
-        //         //     return new JsonResult(new { id = _admins.GetByEmail(loginInformation.Email).Id } );
-        //         // }
-        //         return Unauthorized();
-        //     }
-        //     catch (Exception)
-        //     {
-        //         return BadRequest();
-        //     }   
-        // }
 
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
@@ -106,12 +86,12 @@ namespace Nackademiska.Controllers
                             new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                         };
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("nackademiskaAuktionsfrämjandet"));
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.Key));
                         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                         var token = new JwtSecurityToken(
-                            issuer: "http://nackademiska.azurewebsites.net", 
-                            audience: "http://nackademiska.azurewebsites.net",
+                            issuer: _jwtOptions.Issuer,
+                            audience: _jwtOptions.Audiance,
                             claims: claims,
                             expires: DateTime.UtcNow.AddMinutes(15),
                             signingCredentials: creds

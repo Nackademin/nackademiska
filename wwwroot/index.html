@@ -65,16 +65,13 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-12">
-                                Kommer senare!
-                            </div>
-                            <!--<label class="col-sm-2 control-label">URL</label>
+                            <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/account/login</code></label>
                                 <br><br>
-                            </div>-->
+                            </div>
                         </div>
-                        <!--<div class="row">
+                        <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>post</code>
@@ -98,7 +95,7 @@
                                 Om användaren inte finns/fel lösenord så returneras http error:<br>
                                 <code>401</code> - Unauthorized (vid fel användarnamn eller lösenord)<br>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,20 +104,43 @@
             <div class="col-sm-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                        <h2 class="panel-title">Logout</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/account/logout</code></label>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         <h2 class="panel-title">Logga in administratör</h2>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-12">
-                                Kommer senare!
-                            </div>
-                            <!--<label class="col-sm-2 control-label">URL</label>
+                            <label class="col-sm-2 control-label">URL</label>
                             <div class="col-sm-10">
                                 <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/account/admin/login</code></label>
                                 <br><br>
-                            </div>-->
+                            </div>
                         </div>
-                        <!--<div class="row">
+                        <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
                                 <code>post</code>
@@ -133,19 +153,18 @@
                                 JSON objekt med login information som innehåller:<br>
                                 <code>email</code> - Administratörens e-post<br>
                                 <code>password</code> - Administratörens lösenord<br>
-                                <span class="bg-success">(email: admin@admin.se, lösenord: admin12345)</span>
+                                <span class="bg-success">(email: admin@admin.se, lösenord: admin123456)</span>
                                 <br><br>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-2 control-label">Resultat</label>
                             <div class="col-sm-10">
-                                JSON objekt som innehåller:<br>
-                                <code>id</code> - Administratörens id<br><br>
+                                JWT token<br><br>
                                 Om användaren inte finns/fel lösenord så returneras http error:<br>
                                 <code>401</code> - Unauthorized (vid fel användarnamn eller lösenord)<br>
-                            </div>
-                        </div>-->
+                            </div>                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,6 +246,7 @@
                                 <code>city</code> - Kundens stad<br>
                                 <code>phone</code> - Kundens telefon<br>
                                 <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord<br>
                             </div>
                         </div>
                     </div>
@@ -270,6 +290,7 @@
                                 <code>city</code> - Kundens stad<br>
                                 <code>phone</code> - Kundens telefon<br>
                                 <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord<br>
                             </div>
                         </div>
                     </div>
@@ -305,6 +326,7 @@
                                 <code>city</code> - Kundens stad<br>
                                 <code>phone</code> - Kundens telefon<br>
                                 <code>email</code> - Kundens e-post<br>
+                                <code>password</code> - Kundens lösenord<br>                                
                             </div>
                         </div>
                     </div>
@@ -429,7 +451,7 @@
                         <div class="row">
                             <label class="col-sm-2 control-label">Information</label>
                             <div class="col-sm-10">
-                                Om en auktion är köpt med "köp nu", så sätts <code>Sold</code> till <code>true</code>.<br>
+                                Om en auktion är köpt med "köp nu", så sätts <code>sold</code> till <code>true</code>.<br>
                                 Obs tänk på att en auktion kan vara avslutad utan något bud, då skall den ej visas i säljstatistiken.<br><br>
                             </div>
                         </div>                        
@@ -445,8 +467,8 @@
                                 <code>imageUrl</code> - Auktionens bild<br>
                                 <code>categoryId</code> - Auktionens kategori id<br>
                                 <code>supplierId</code> - Auktionens leverantörs id<br>
-                                <code>BuyNowPrice</code> - Auktionens acceptpris<br>
-                                <code>Sold</code> - Om auktionen är såld eller inte
+                                <code>buyNowPrice</code> - Auktionens acceptpris<br>
+                                <code>sold</code> - Om auktionen är såld eller inte
                             </div>
                         </div>
                     </div>
@@ -490,8 +512,46 @@
                                 <code>imageUrl</code> - Auktionens bild<br>
                                 <code>categoryId</code> - Auktionens kategori id<br>
                                 <code>supplierId</code> - Auktionens leverantörs id<br>
-                                <code>BuyNowPrice</code> - Auktionens acceptpris<br>
-                                <code>Sold</code> - Om auktionen är såld eller inte<br>
+                                <code>buyNowPrice</code> - Auktionens acceptpris<br>
+                                <code>sold</code> - Om auktionen är såld eller inte<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Hämta avslutade auktioner</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-2 control-label">URL</label>
+                            <div class="col-sm-10">
+                                <label class="control-label"><code>http://nackademiska.azurewebsites.net/api/auction/sold</code></label>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Typ</label>
+                            <div class="col-sm-10">
+                                <code>get</code> - <span class="bg-warning">Kräver inloggning (JWT)</span>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-2 control-label">Resultat</label>
+                            <div class="col-sm-10">
+                                JSON objekt för den specifika auktionen som innehåller:<br>
+                                <code>id</code> - Auktionens id<br>
+                                <code>name</code> - Auktionens namn<br>
+                                <code>description</code> - Auktionens beskrivning<br>
+                                <code>startTime</code> - Auktionens starttid<br>
+                                <code>endTime</code> - Auktionens sluttid<br>
+                                <code>imageUrl</code> - Auktionens bild<br>
+                                <code>categoryId</code> - Auktionens kategori id<br>
+                                <code>supplierId</code> - Auktionens leverantörs id<br>
+                                <code>buyNowPrice</code> - Auktionens acceptpris<br>
+                                <code>sold</code> - Om auktionen är såld eller inte<br>
                             </div>
                         </div>
                     </div>
@@ -512,7 +572,7 @@
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
-                                <code>post</code>
+                                <code>post</code> - <span class="bg-warning">Kräver inloggning (Cookie)</span>
                                 <br><br>
                             </div>
                         </div>
@@ -558,7 +618,7 @@
                         <div class="row">
                             <label class="col-sm-2 control-label">Typ</label>
                             <div class="col-sm-10">
-                                <code>post</code>
+                                <code>post</code> - <span class="bg-warning">Kräver inloggning (Cookie)</span>
                                 <br><br>
                             </div>
                         </div>
@@ -615,8 +675,8 @@
                                 <code>id</code> - Bud id<br>
                                 <code>auctionId</code> - Auktionens id<br>
                                 <code>customerId</code> - Kundens id<br>
-                                <code>DateTime</code> - DateTime för budet<br>
-                                <code>BidPrice</code> - Budet<br>
+                                <code>dateTime</code> - DateTime för budet<br>
+                                <code>bidPrice</code> - Budet<br>
                             </div>
                         </div>
                     </div>

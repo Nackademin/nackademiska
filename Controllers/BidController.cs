@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Nackademiska.Services;
 using Nackademiska.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Nackademiska.Controllers
 {
-    // [EnableCors("CorsPolicy")]
+    [Authorize]  
     [Route("api/[controller]")]
     public class BidController : Controller
     {
@@ -20,7 +21,8 @@ namespace Nackademiska.Controllers
             _customers = customers;
             _suppliers = suppliers;
         }
-
+        
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IEnumerable<Bid> Get(int id)
         {

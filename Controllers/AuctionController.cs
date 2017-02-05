@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Nackademiska.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class AuctionController : Controller
     {
@@ -23,6 +23,7 @@ namespace Nackademiska.Controllers
             _suppliers = suppliers;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IEnumerable<Auction> Get()
         {
@@ -35,6 +36,7 @@ namespace Nackademiska.Controllers
             return _auctions.GetAllCompletedAuctions();
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public Auction Get(int id)
         {
@@ -60,20 +62,5 @@ namespace Nackademiska.Controllers
                 return BadRequest();
             }
         }
-
-        // [HttpPost]
-        // public void Post([FromBody]Auction value)
-        // {
-        // }
-
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody]string value)
-        // {
-        // }
-
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
     }
 }

@@ -6,7 +6,6 @@ using Nackademiska.Models;
 
 namespace Nackademiska.Controllers
 {
-    // [EnableCors("CorsPolicy")]
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
@@ -42,15 +41,5 @@ namespace Nackademiska.Controllers
                return BadRequest();
             }
         }
-
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody]string value)
-        // {
-        // }
-
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
     }
 }

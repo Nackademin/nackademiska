@@ -3,20 +3,34 @@ using System.Linq;
 using System.Collections.Generic;
 using AddressBook.Data;
 using Nackademiska.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Nackademiska.Services
 {
     public class CustomerDatabaseRepository : ICustomerRepository
     {
         private readonly ApplicationDbContext _dbContext;
-        public CustomerDatabaseRepository(ApplicationDbContext dbContext)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CustomerDatabaseRepository(ApplicationDbContext dbContext,
+                                          UserManager<ApplicationUser> userManager)
         {
                 _dbContext = dbContext;
         }
-        public void Create(Customer customer)
+        public async void Create(Customer customer)
         {
             _dbContext.Customers.Add(customer);
             _dbContext.SaveChanges();
+
+            var user = new ApplicationUser { UserName = customer.Email, 
+                                             Email = customer.Email,
+                                             CustomerId = customer.Id,
+                                             FirstName = customer.FirstName,
+                                             LastName = customer.LastName,
+                                             Address = customer.Address,
+                                             City = customer.City,
+                                             PhoneNumber = customer.Phone };
+            await _userManager.CreateAsync(user, customer.Password);
         }
         public Customer Get(int id)
         {

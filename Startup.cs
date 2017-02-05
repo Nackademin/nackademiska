@@ -17,6 +17,7 @@ namespace Nackademiska
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -26,27 +27,26 @@ namespace Nackademiska
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-
-        public IConfigurationRoot Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddOptions();
+            services.Configure<JwtOptions>(Configuration.GetSection("Tokens"));
+
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 3;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 
-                // Cookie settings
                 options.Cookies.ApplicationCookie.Events = 
                     new CookieAuthenticationEvents() 
                     {
@@ -61,15 +61,6 @@ namespace Nackademiska
                     };
             });
             services.AddCors();
-            // services.AddCors(options =>
-            // {
-            //     options.AddPolicy("CorsPolicy",
-            //         builder => builder.AllowAnyOrigin()
-            //         .AllowAnyMethod()
-            //         .AllowAnyHeader()
-            //         .AllowCredentials() );
-            // });
-
             services.AddMvc();
 
             services.AddSingleton<IAuctionRepository, AuctionDatabaseRepository>();
@@ -80,32 +71,34 @@ namespace Nackademiska
             services.AddTransient<ApplicationDbContextSeeder>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContextSeeder seeder)
+        public void Configure(IApplicationBuilder app, 
+                              IHostingEnvironment env, 
+                              ILoggerFactory loggerFactory, 
+                              ApplicationDbContextSeeder seeder)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             
             app.UseApplicationInsightsRequestTelemetry();
-            //app.UseCors(builder =>  builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseIdentity();
+
             app.UseJwtBearerAuthentication(new JwtBearerOptions() 
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidIssuer = "http://nackademiska.azurewebsites.net",
-                    ValidAudience = "http://nackademiska.azurewebsites.net",
+                    ValidIssuer = Configuration["Tokens:Issuer"],
+                    ValidAudience = Configuration["Tokens:Audiance"],
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("nackademiskaAuktionsfrämjandet")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])),
                     ValidateLifetime = true
                 }
             });
             
-            // app.UseCors("CorsPolicy");
             app.UseCors(cfg => 
             {
                 cfg.AllowAnyHeader()
